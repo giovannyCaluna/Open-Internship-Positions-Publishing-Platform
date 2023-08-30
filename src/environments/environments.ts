@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    firebaseConfig: {
+    firebaseConfig : {
         apiKey: "AIzaSyBWGb7ST0biDutUWkugWVPWopZ-qEHfhq4",
         authDomain: "open-internships-platform.firebaseapp.com",
         databaseURL: "https://open-internships-platform-default-rtdb.europe-west1.firebasedatabase.app",
