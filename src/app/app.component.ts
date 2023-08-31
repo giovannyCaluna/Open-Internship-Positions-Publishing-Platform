@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environments';
+import { ModalService } from './modal.service';
 
 
 
@@ -11,6 +12,17 @@ import { environment } from 'src/environments/environments';
 
 
 export class AppComponent {
-  
+  constructor(private modalService: ModalService) {}
+
+  openAddInternshipModal() {
+    const dialogRef = this.modalService.openAddInternshipModal();
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+console.log(result);
+      }
+    });
+  }
+
   title = 'internship-project';
 }

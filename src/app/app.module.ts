@@ -12,6 +12,13 @@ import { RegistrationComponent } from './registration/registration.component';
 import { initializeApp, FirebaseOptions  } from 'firebase/app';
 import { environment } from 'src/environments/environments';
 import { FirebaseServicesService } from './firebase-services.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddInternshipModalComponent } from './add-internship-modal/add-internship-modal.component';
+import { MatDialogModule  } from '@angular/material/dialog';
+import{MatFormFieldModule} from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button'
+
 
 
 
@@ -20,10 +27,11 @@ import { FirebaseServicesService } from './firebase-services.service';
   declarations: [
     AppComponent,
     InternshipComponent, 
-    LoginComponent, RegistrationComponent
+    LoginComponent, RegistrationComponent, AddInternshipModalComponent
   ],
   imports: [
-    BrowserModule,FormsModule, AppRoutingModule,RouterModule
+    BrowserModule,FormsModule, MatButtonModule, AppRoutingModule,RouterModule, 
+    MatFormFieldModule, BrowserAnimationsModule, MatDialogModule, MatInputModule
   ],
   providers:[FirebaseServicesService
 

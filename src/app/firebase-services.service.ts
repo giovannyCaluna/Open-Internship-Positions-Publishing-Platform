@@ -15,4 +15,6 @@ export class FirebaseServicesService {
   getApp(): FirebaseApp {
     return this.app;
   }
+
+  
 }

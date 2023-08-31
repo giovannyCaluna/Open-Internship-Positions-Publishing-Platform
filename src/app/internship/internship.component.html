@@ -6,4 +6,7 @@
   <h2>{{ internship.title }}</h2>
   <p>{{ internship.description }}</p>
   <p>Offered: {{ internship.offered }}</p>
+  <mat-dialog-actions>
+    <button mat-button (click)="edit(internship)">Edit</button>
+  </mat-dialog-actions>
 </div>

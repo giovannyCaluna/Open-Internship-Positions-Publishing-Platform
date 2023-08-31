@@ -18,9 +18,9 @@ export class RegistrationComponent implements OnInit{
   database = getDatabase(this.firebaseService.getApp());
 
   name: string = '';
-  email: string = 'gio9@gmail.com';
-  role: string = 'student';
-  password: string = '123456';
+  email: string = '';
+  role: string = '';
+  password: string = '';
 
 
   ngOnInit(): void {
@@ -41,7 +41,8 @@ export class RegistrationComponent implements OnInit{
         const userRef = ref(this.database,`users/${response.user.uid}`); // Assuming '/internships' is the correct path in your database
         set(userRef,{
           name:this.name,
-          role:this.role
+          role:this.role,
+          email:this.email
         })
         this.router.navigate(['/login']); // Replace 'destination-route' with your actual route
 

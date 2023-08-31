@@ -1,11 +1,18 @@
+import { User } from './user.model';
 export class Internship {
-    title: string;
-    description: string;
-    offered: boolean;
-  
-    constructor(title: string, description: string, offered: boolean) {
-      this.title = title;
-      this.description = description;
-      this.offered = offered;
-    }
+  key: string;
+  title: string;
+  description: string;
+  offered: string;
+  category: String;
+  owner: User;
+
+  constructor(key: string, title: string, description: string, offered: string, owner: User, category: string) {
+    this.key = key;
+    this.title = title;
+    this.description = description;
+    this.offered = offered;
+    this.category = category;
+    this.owner = owner;
   }
+}

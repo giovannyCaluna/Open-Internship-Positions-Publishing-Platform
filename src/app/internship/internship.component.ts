@@ -1,5 +1,5 @@
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { initializeApp } from "firebase/app";
 import { Observable } from 'rxjs';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
@@ -10,19 +10,11 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 import { RouterModule } from '@angular/router';
 import { FirebaseServicesService } from '../firebase-services.service';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatDialogRef } from '@angular/material/dialog';
+import { ModalService } from '../modal.service';
 
 
-
-
-
-
-
-// Initialize Firebase
-//const app = initializeApp(firebaseConfig);
-// const db = getFirestore(app);
-// const database = getDatabase(app);
-// var email= ''
-// var password = ''
 
 
 @Component({
@@ -31,18 +23,31 @@ import { FirebaseServicesService } from '../firebase-services.service';
   styleUrls: ['./internship.component.css']
 })
 export class InternshipComponent implements OnInit {
+
   internships$: Observable<any[]> | undefined;
   internshipsList: Internship[] = [];
 
-  constructor(private firebaseService: FirebaseServicesService) { }
+  constructor(private firebaseService: FirebaseServicesService, private modalService: ModalService) { }
+  ngOnInit(): void {
+    this.getInternships();
+    console.log(getAuth(this.firebaseService.getApp()));
+  //   firebase.auth().onAuthStateChanged(user => {
+  //     if (user) {
+  //       // User is signed in
+  //       // You can store the user information or perform actions
+  //     } else {
+  //       // User is signed out
+  //     }
+  //   });
+  }
+
+
 
   database = getDatabase(this.firebaseService.getApp());
+  // user = this.firebaseService.getApp()
 
 
-  ngOnInit() {
-    this.getInternships();
 
-  }
 
   async getInternships() {
 
@@ -55,9 +60,13 @@ export class InternshipComponent implements OnInit {
         this.internshipsList = Object.keys(internshipsData).map(key => {
           const internship = internshipsData[key];
           return new Internship(
+            key,
             internship.title,
             internship.description,
-            internship.offered
+            internship.offered,
+            internship.owner,
+            internship.category
+
           );
         });
       }
@@ -68,6 +77,19 @@ export class InternshipComponent implements OnInit {
 
 
 
+  edit(internship: any) {
+    console.log(internship);
+
+    const dialogRef = this.modalService.openEditInternshipModal(internship);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+      }
+    });
+
+
+  }
 
 
 
@@ -76,7 +98,6 @@ export class InternshipComponent implements OnInit {
   @Input() description: string | undefined;
   @Input() offered: boolean | undefined;
 }
-
 
 
 
