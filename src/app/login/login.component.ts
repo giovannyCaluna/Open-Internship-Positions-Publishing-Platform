@@ -34,25 +34,20 @@ export class LoginComponent implements OnInit {
   }
 
    login( ) {
+    try{
+      this.firebaseService.login( this.email,this.password);
+      this.router.navigate(['/internships']); // Replace 'destination-route' with your actual route
 
-    console.log(signInWithEmailAndPassword(this.auth, this.email,this.password)
 
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log("userCredential: ", user);
-        this.router.navigate(['/']); // Replace 'destination-route' with your actual route
+    }catch{
+      this.router.navigate(['/login']); // Replace 'destination-route' with your actual route
 
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("errorMessage: ", errorMessage);
-      }
+    }
 
-    ));
 
+    
+       
+  
  
   }
 

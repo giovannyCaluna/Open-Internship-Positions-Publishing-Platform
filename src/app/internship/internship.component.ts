@@ -30,7 +30,7 @@ export class InternshipComponent implements OnInit {
   constructor(private firebaseService: FirebaseServicesService, private modalService: ModalService) { }
   ngOnInit(): void {
     this.getInternships();
-    console.log(getAuth(this.firebaseService.getApp()));
+    console.log(this.firebaseService.getUser());
   //   firebase.auth().onAuthStateChanged(user => {
   //     if (user) {
   //       // User is signed in
