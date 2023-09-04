@@ -10,11 +10,12 @@ import { FirebaseServicesService } from './firebase-services.service';
   
     constructor(private firebaseService:FirebaseServicesService) {}
 
-    
+    public isAuthenticatedVar = false;
 
 
     isAuthenticated() {
         var auth =  getAuth(this.firebaseService.getApp());
+        this.isAuthenticatedVar=true;
         return auth.currentUser !== null;
       }
   

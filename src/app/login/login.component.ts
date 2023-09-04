@@ -33,9 +33,9 @@ export class LoginComponent implements OnInit {
     }
   }
 
-   login( ) {
+   async login( ) {
     try{
-      this.firebaseService.login( this.email,this.password);
+      await this.firebaseService.login( this.email,this.password);
       this.router.navigate(['/internships']); // Replace 'destination-route' with your actual route
 
 

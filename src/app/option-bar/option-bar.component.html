@@ -1,0 +1,14 @@
+<nav class="navbar">
+    <ul>
+      <li *ngIf = "!this.logged()"><a routerLink="/">Login</a></li>
+      <li *ngIf = "!this.logged()"><a routerLink="/registration">Registration</a></li>
+      <li *ngIf = "this.logged()"><a routerLink="/internships">Internship</a></li>
+
+       <mat-dialog-actions>
+            <button mat-button *ngIf = "this.logged()"  (click)="this.singOut()"> Sing Out</button>
+          </mat-dialog-actions> 
+
+    
+    </ul>
+
+  </nav>

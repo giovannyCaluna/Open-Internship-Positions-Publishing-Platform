@@ -17,7 +17,8 @@ import { AddInternshipModalComponent } from './add-internship-modal/add-internsh
 import { MatDialogModule  } from '@angular/material/dialog';
 import{MatFormFieldModule} from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button'
+import {MatButtonModule} from '@angular/material/button';
+import { OptionBarComponent } from './option-bar/option-bar.component'
 
 
 
@@ -27,7 +28,7 @@ import {MatButtonModule} from '@angular/material/button'
   declarations: [
     AppComponent,
     InternshipComponent, 
-    LoginComponent, RegistrationComponent, AddInternshipModalComponent
+    LoginComponent, RegistrationComponent, AddInternshipModalComponent, OptionBarComponent
   ],
   imports: [
     BrowserModule,FormsModule, MatButtonModule, AppRoutingModule,RouterModule, 

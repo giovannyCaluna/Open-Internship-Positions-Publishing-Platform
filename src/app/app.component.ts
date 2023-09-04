@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environments';
 import { ModalService } from './modal.service';
+import { FirebaseServicesService } from './firebase-services.service';
+import { AuthService } from './auth.service';
 
 
 
@@ -11,18 +13,32 @@ import { ModalService } from './modal.service';
 })
 
 
-export class AppComponent {
-  constructor(private modalService: ModalService) {}
+export class AppComponent implements OnInit {
+  constructor(private modalService: ModalService, private auth: AuthService) { }
+  showInternship: boolean = false;
+  ngOnInit(): void {
+
+
+    if (this.auth.isAuthenticated()) {
+      this.showInternship = true;
+    }
+  }
+
 
   openAddInternshipModal() {
     const dialogRef = this.modalService.openAddInternshipModal();
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-console.log(result);
+        console.log(result);
       }
     });
   }
 
   title = 'internship-project';
+  logged() {
+    console.log("Chaking the ngIf", this.auth.isAuthenticated());
+
+    return this.auth.isAuthenticated();
+  }
 }
