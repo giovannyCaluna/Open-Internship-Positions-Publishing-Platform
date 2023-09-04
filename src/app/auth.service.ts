@@ -1,22 +1,20 @@
-import { Inject, Injectable } from '@angular/core';
-import { Auth, getAuth } from 'firebase/auth';
+import { Injectable } from '@angular/core';
+import { getAuth } from 'firebase/auth';
 import { FirebaseServicesService } from './firebase-services.service';
 
 
 @Injectable({
-    providedIn: 'root'
-  })
-  export class AuthService {
-  
-    constructor(private firebaseService:FirebaseServicesService) {}
+  providedIn: 'root'
+})
+export class AuthService {
 
-    public isAuthenticatedVar = false;
+  constructor(private firebaseService: FirebaseServicesService) { }
 
-
-    isAuthenticated() {
-        var auth =  getAuth(this.firebaseService.getApp());
-        this.isAuthenticatedVar=true;
-        return auth.currentUser !== null;
-      }
-  
+  public isAuthenticatedVar = false;
+  isAuthenticated() {
+    var auth = getAuth(this.firebaseService.getApp());
+    this.isAuthenticatedVar = true;
+    return auth.currentUser !== null;
   }
+
+}

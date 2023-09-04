@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environments';
 import { ModalService } from './modal.service';
-import { FirebaseServicesService } from './firebase-services.service';
 import { AuthService } from './auth.service';
 
 

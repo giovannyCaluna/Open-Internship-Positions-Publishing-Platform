@@ -1,20 +1,11 @@
 
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { initializeApp } from "firebase/app";
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import { getDatabase } from "firebase/database";
 import { ref, onValue } from "firebase/database";
 import { Internship } from '../models/internship.model';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-
-import { RouterModule } from '@angular/router';
 import { FirebaseServicesService } from '../firebase-services.service';
-import { MatButton, MatButtonModule } from '@angular/material/button';
-import { MatDialogRef } from '@angular/material/dialog';
 import { ModalService } from '../modal.service';
-
-
 
 
 @Component({
@@ -31,24 +22,9 @@ export class InternshipComponent implements OnInit {
   ngOnInit(): void {
     this.getInternships();
     console.log(this.firebaseService.getUser());
-  //   firebase.auth().onAuthStateChanged(user => {
-  //     if (user) {
-  //       // User is signed in
-  //       // You can store the user information or perform actions
-  //     } else {
-  //       // User is signed out
-  //     }
-  //   });
   }
 
-
-
   database = getDatabase(this.firebaseService.getApp());
-  // user = this.firebaseService.getApp()
-
-
-
-
   async getInternships() {
 
 
@@ -75,8 +51,6 @@ export class InternshipComponent implements OnInit {
   }
 
 
-
-
   edit(internship: any) {
     console.log(internship);
 
@@ -90,9 +64,6 @@ export class InternshipComponent implements OnInit {
 
 
   }
-
-
-
 
   @Input() title: string | undefined;
   @Input() description: string | undefined;

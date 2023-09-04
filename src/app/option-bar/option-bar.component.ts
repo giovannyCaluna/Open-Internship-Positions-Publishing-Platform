@@ -11,17 +11,15 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./option-bar.component.css']
 })
 export class OptionBarComponent {
-  constructor(private firebaseService:FirebaseServicesService,  private router: Router, public auth: AuthService) {}
+  constructor(private firebaseService: FirebaseServicesService, private router: Router, public auth: AuthService) { }
 
-
-  singOut(){
-    var auth =  getAuth(this.firebaseService.getApp());
+  singOut() {
+    var auth = getAuth(this.firebaseService.getApp());
     auth.signOut();
     this.router.navigate(['/login']); // Replace 'destination-route' with your actual route
   }
-  logged(){
+  logged() {
     console.log("Chaking the ngIf", this.auth.isAuthenticated());
-
     return this.auth.isAuthenticated();
   }
 
