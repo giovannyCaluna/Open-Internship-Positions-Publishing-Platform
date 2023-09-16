@@ -18,7 +18,8 @@ import { MatDialogModule  } from '@angular/material/dialog';
 import{MatFormFieldModule} from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-import { OptionBarComponent } from './option-bar/option-bar.component'
+import { OptionBarComponent } from './option-bar/option-bar.component';
+import { PostInternshipComponent } from './post-internship/post-internship.component'
 
 
 
@@ -28,7 +29,7 @@ import { OptionBarComponent } from './option-bar/option-bar.component'
   declarations: [
     AppComponent,
     InternshipComponent, 
-    LoginComponent, RegistrationComponent, AddInternshipModalComponent, OptionBarComponent
+    LoginComponent, RegistrationComponent, AddInternshipModalComponent, OptionBarComponent, PostInternshipComponent
   ],
   imports: [
     BrowserModule,FormsModule, MatButtonModule, AppRoutingModule,RouterModule, 

@@ -15,34 +15,45 @@ import { User } from '../models/user.model';
 export class AddInternshipModalComponent implements OnInit {
 
   constructor(private firebaseService: FirebaseServicesService, private dialogRef: MatDialogRef<any>) { }
+   user = new User("","","","");
+   owner: User = new User('', '', '', '');
+   database = getDatabase(this.firebaseService.getApp());
 
 
-  ngOnInit(): void {
+  async ngOnInit() {
+
+    await this.firebaseService.getUser().then((result) => {
+
+      this.user = new User(result.userId, result.name, result.role, result.email)
+    });
+  
+console.log("dataos usuario to save internship", this.user);
     if (this.dialogRef._containerInstance._config.data != null) {
-      console.log(this.dialogRef._containerInstance._config.data);
       this.description = this.dialogRef._containerInstance._config.data.description;
       this.title = this.dialogRef._containerInstance._config.data.title;
       this.offered = this.dialogRef._containerInstance._config.data.offered;
       this.key = this.dialogRef._containerInstance._config.data.key;
+      
     }
   }
 
 
-  database = getDatabase(this.firebaseService.getApp());
 
   async saveInternship() {
     if (this.dialogRef._containerInstance._config.data != null) {
-      var newInternship = new Internship(this.key, this.title, this.description, this.offered, this.owner, this.category);
-      const starCountRef = ref(this.database, '/internships/internships/' + this.key);
+      var newInternship = new Internship(this.key, this.title, this.description, this.offered, this.user, this.category);
 
-       console.log(update(starCountRef, newInternship));
+      const starCountRef = ref(this.database, '/internships/' + this.key);
+
+      console.log(update(starCountRef, newInternship));
 
 
     } else {
-
-      var newInternship = new Internship('', this.title, this.description, this.offered, this.owner, this.category);
-      const starCountRef = ref(this.database, '/internships/internships'); // Assuming '/internships' is the correct path in your database
-       console.log(push(starCountRef, newInternship));
+      
+      var newInternship = new Internship('', this.title, this.description, this.offered, this.user, this.category);
+      console.log("saving new register", newInternship);
+      const starCountRef = ref(this.database, '/internships/'); // Assuming '/internships' is the correct path in your database
+      console.log(push(starCountRef, newInternship));
     }
 
     this.dialogRef.close();
@@ -55,7 +66,7 @@ export class AddInternshipModalComponent implements OnInit {
   title: string = '';
   offered: string = '';
   key: string = '';
-  owner: User = new User('', '', '', '');
+  
   category: string = '';
 
   onSaveClick() {

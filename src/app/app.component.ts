@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
 
   title = 'internship-project';
   logged() {
-    console.log("Chaking the ngIf", this.auth.isAuthenticated());
+    //console.log("Chaking the ngIf", this.auth.isAuthenticated());
 
     return this.auth.isAuthenticated();
   }

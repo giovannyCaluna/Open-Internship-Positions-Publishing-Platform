@@ -6,6 +6,8 @@
   <p>{{ internship.description }}</p>
   <p>Offered: {{ internship.offered }}</p>
   <mat-dialog-actions>
-    <button mat-button (click)="edit(internship)">Edit</button>
+    <button mat-button (click)="edit(internship)" *ngIf="isStudet()">Apply</button>
+    <button mat-button (click)="edit(internship)" *ngIf="!isStudet()">Edit</button>
+
   </mat-dialog-actions>
 </div>

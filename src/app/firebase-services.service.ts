@@ -35,16 +35,43 @@ export class FirebaseServicesService {
   }
 
   async getUser() {
-    var database = getDatabase(this.getApp());
-    const starCountRef = ref(database, 'users/' + this.user.userId); // Assuming '/internships' is the correct path in your database
-    onValue(starCountRef, (snapshot) => {
-      const userData = snapshot.val();
-      console.log(userData);
-      this.user.mail = userData.mail;
-      this.user.name = userData.name;
-      this.user.role = userData.role;
+    return new Promise<User>((resolve) => {
+      var database = getDatabase(this.getApp());
+      const starCountRef = ref(database, 'users/' + this.user.userId);
+  
+      onValue(starCountRef, (snapshot) => {
+        const userData = snapshot.val();
+        console.log("Que ha pasado", userData.role);
+        const user2 = new User(
+          this.user.userId,
+          userData.name,
+          userData.role,
+          userData.email
+        );
+        // user2.mail = userData.email;
+        // user2.name = userData.name;
+        // user2.role = userData.role;
+        
+        resolve(user2); // Resolve the promise with the user2 object when data is available
+      });
+  
+   
     });
-    console.log(this.user);
+  }
+  
+  // You can use the getUser function like this:
+  // async function someFunction() {
+  //   try {
+  //     const user = await getUser();
+  //     console.log(user);
+  //     // Now you can work with the 'user' object here
+  //   } catch (error) {
+  //     console.error("Error retrieving user data:", error);
+  //   }
+  // }
+  
+  getFinalUser() {
+    this.getUser();
     return this.user;
   }
 }

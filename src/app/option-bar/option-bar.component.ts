@@ -19,7 +19,7 @@ export class OptionBarComponent {
     this.router.navigate(['/login']); // Replace 'destination-route' with your actual route
   }
   logged() {
-    console.log("Chaking the ngIf", this.auth.isAuthenticated());
+    //console.log("Chaking the ngIf", this.auth.isAuthenticated());
     return this.auth.isAuthenticated();
   }
 

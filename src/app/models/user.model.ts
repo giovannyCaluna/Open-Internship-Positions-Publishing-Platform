@@ -2,12 +2,18 @@ export class User {
     userId: string;
     name: string;
     role: string;
-    mail: string;
+    email: string;
 
-    constructor(userId: string, name: string, role: string, mail: string) {
+    constructor(userId: string, name: string, role: string, email: string) {
         this.userId = userId;
         this.name = name;
         this.role = role;
-        this.mail = mail;
+        this.email = email;
     }
+
+    getRole() {
+        return this.role;
+    }
+
+
 }
