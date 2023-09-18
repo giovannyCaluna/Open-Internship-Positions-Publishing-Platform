@@ -1,0 +1,16 @@
+<mat-dialog-content>
+    <h2>Apply Internship</h2>
+    <h3>{{title}}</h3>
+    <p>{{ description }}</p>
+    <p>Offered: {{ offered }}</p>
+    <form>
+        <mat-form-field class="wide-input">
+            <input matInput placeholder="Write a message for the company" [(ngModel)]="message" name="message">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button (click)="onCancelClick()">Cancel</button>
+    <button mat-button (click)="applyInternship()">Send</button>
+</mat-dialog-actions>

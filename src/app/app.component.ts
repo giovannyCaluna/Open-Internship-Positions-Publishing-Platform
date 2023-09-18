@@ -23,15 +23,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  openAddInternshipModal() {
-    const dialogRef = this.modalService.openAddInternshipModal();
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        console.log(result);
-      }
-    });
-  }
 
   title = 'internship-project';
   logged() {

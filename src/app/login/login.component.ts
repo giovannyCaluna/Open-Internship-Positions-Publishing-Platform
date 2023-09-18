@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
 
   @Input() email: string = '';
   @Input() password: string = '';
-  role: string = '';
 
 
 
@@ -35,23 +34,18 @@ export class LoginComponent implements OnInit {
   }
   async login() {
 
-      try {
-        await this.firebaseService.login(this.email, this.password);
-        if(this.role== "student"){
-          
-          this.router.navigate(['/applyInternships']); // Replace 'destination-route' with your actual route
+    try {
+      await this.firebaseService.login(this.email, this.password);
+      console.log(this.firebaseService.getUser());
+      this.router.navigate(['/applyInternships']); // Replace 'destination-route' with your actual route
+    } catch {
+      this.cleanValues();
+      this.router.navigate(['/login']); // Replace 'destination-route' with your actual route
 
-        }else{
-          this.router.navigate(['/postInternships']); // Replace 'destination-route' with your actual route
-
-        }
-  
-      } catch {
-        this.router.navigate(['/login']); // Replace 'destination-route' with your actual route
-  
-      }
-   
-   
+    }
   }
-
+  cleanValues() {
+    this.email = '';
+    this.password = '';
+  }
 }

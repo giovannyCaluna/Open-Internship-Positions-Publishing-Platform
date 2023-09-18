@@ -19,7 +19,8 @@ import{MatFormFieldModule} from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { OptionBarComponent } from './option-bar/option-bar.component';
-import { PostInternshipComponent } from './post-internship/post-internship.component'
+import { PostInternshipComponent } from './post-internship/post-internship.component';
+import { ApplyInternshipModalComponent } from './apply-internship-modal/apply-internship-modal.component'
 
 
 
@@ -29,7 +30,7 @@ import { PostInternshipComponent } from './post-internship/post-internship.compo
   declarations: [
     AppComponent,
     InternshipComponent, 
-    LoginComponent, RegistrationComponent, AddInternshipModalComponent, OptionBarComponent, PostInternshipComponent
+    LoginComponent, RegistrationComponent, AddInternshipModalComponent, OptionBarComponent, PostInternshipComponent, ApplyInternshipModalComponent
   ],
   imports: [
     BrowserModule,FormsModule, MatButtonModule, AppRoutingModule,RouterModule, 

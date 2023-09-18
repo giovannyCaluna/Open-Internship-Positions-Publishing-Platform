@@ -29,6 +29,7 @@ export class FirebaseServicesService {
       console.log('User signed in successfully');
       await signInWithEmailAndPassword(auth, email, password).then(result =>
         this.user.userId = result.user.uid);
+      await this.getUser();
     } catch (error) {
       console.error('Sign in error:', error);
     }
@@ -38,7 +39,7 @@ export class FirebaseServicesService {
     return new Promise<User>((resolve) => {
       var database = getDatabase(this.getApp());
       const starCountRef = ref(database, 'users/' + this.user.userId);
-  
+
       onValue(starCountRef, (snapshot) => {
         const userData = snapshot.val();
         console.log("Que ha pasado", userData.role);
@@ -48,30 +49,33 @@ export class FirebaseServicesService {
           userData.role,
           userData.email
         );
-        // user2.mail = userData.email;
-        // user2.name = userData.name;
-        // user2.role = userData.role;
-        
+
+
         resolve(user2); // Resolve the promise with the user2 object when data is available
       });
-  
-   
+
+
     });
   }
-  
-  // You can use the getUser function like this:
-  // async function someFunction() {
-  //   try {
-  //     const user = await getUser();
-  //     console.log(user);
-  //     // Now you can work with the 'user' object here
-  //   } catch (error) {
-  //     console.error("Error retrieving user data:", error);
-  //   }
-  // }
-  
+
   getFinalUser() {
-    this.getUser();
+
     return this.user;
+  }
+
+
+
+  validateRole(role: String) {
+    this.getUser().then((result) => {
+      this.user = result;
+    });
+    console.log("role send by the function {}user role {}", this.user.role);
+    if (role == this.user.role) {
+      console.log("El usuario tiene el rol que selecciono");
+      return true
+    }
+    console.log("El usuario No tiene el rol que selecciono");
+    return false;
+
   }
 }

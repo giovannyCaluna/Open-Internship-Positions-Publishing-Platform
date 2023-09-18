@@ -80,9 +80,26 @@ export class InternshipComponent implements OnInit {
     });
 
   }
-  isStudet() {
-    return this.user.getRole();
+  apply(internship: any){
+    const dialogRef = this.modalService.openApplyInternshipModal(internship);
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log("The internship opportunity was updated!", result);
+    // });
+console.log("Implemetn the apply procedure.")
   }
+  isStudet() {
+    return this.user.getRole() == "student"? true: false;
+  }
+  openAddInternshipModal() {
+    const dialogRef = this.modalService.openAddInternshipModal();
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result);
+      }
+    });
+  }
+
 
   @Input() title: string | undefined;
   @Input() description: string | undefined;

@@ -1,12 +1,17 @@
 <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
 <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
 
+  <mat-dialog-actions>
+    <button mat-button (click)="openAddInternshipModal()" *ngIf="!isStudet()">Add Internship***</button>
+
+  </mat-dialog-actions>
+
 <div *ngFor="let internship of internshipsList" class="internship">
   <h2>{{ internship.title }}</h2>
   <p>{{ internship.description }}</p>
   <p>Offered: {{ internship.offered }}</p>
   <mat-dialog-actions>
-    <button mat-button (click)="edit(internship)" *ngIf="isStudet()">Apply</button>
+    <button mat-button (click)="apply(internship)" *ngIf="isStudet()">Apply</button>
     <button mat-button (click)="edit(internship)" *ngIf="!isStudet()">Edit</button>
 
   </mat-dialog-actions>
