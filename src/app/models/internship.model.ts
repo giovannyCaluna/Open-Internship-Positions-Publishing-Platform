@@ -6,6 +6,7 @@ export class Internship {
   offered: string;
   category: String;
   owner: User;
+  applicants: User[]=[];
 
   constructor(key: string, title: string, description: string, offered: string, owner: User, category: string) {
     this.key = key;
