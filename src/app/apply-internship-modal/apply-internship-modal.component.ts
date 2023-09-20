@@ -5,6 +5,7 @@ import { ref, push } from "firebase/database";
 import { Internship } from '../models/internship.model'
 import { MatDialogRef } from '@angular/material/dialog';
 import { User } from '../models/user.model';
+import { Applicant } from '../models/applicant';
 
 
 @Component({
@@ -21,12 +22,9 @@ export class ApplyInternshipModalComponent  implements OnInit  {
 
 
  async ngOnInit() {
-
    await this.firebaseService.getUser().then((result) => {
-
      this.user = new User(result.userId, result.name, result.role, result.email)
    });
- 
    if (this.dialogRef._containerInstance._config.data != null) {
      this.description = this.dialogRef._containerInstance._config.data.description;
      this.title = this.dialogRef._containerInstance._config.data.title;
@@ -35,16 +33,11 @@ export class ApplyInternshipModalComponent  implements OnInit  {
    }
  }
 
-
-
  async applyInternship() {
    if (this.dialogRef._containerInstance._config.data != null) {
-     var newInternship = new Internship(this.key, this.title, this.description, this.offered, this.user, this.category);
-
+     var newApplicant = new Applicant(this.user.userId, this.user.name, this.user.email, this.message);
      const starCountRef = ref(this.database, '/internships/' + this.key+'/applicants');
-
-     console.log(push(starCountRef,  this.user), this.user);
-
+     console.log(push(starCountRef,  newApplicant), newApplicant);
    }
   //  } else {
      
@@ -55,18 +48,13 @@ export class ApplyInternshipModalComponent  implements OnInit  {
   //  }
 
    this.dialogRef.close();
-
-
  }
-
 
  description: string = '';
  title: string = '';
  offered: string = '';
  key: string = '';
- 
  category: string = '';
-
  onSaveClick() {
 
  }

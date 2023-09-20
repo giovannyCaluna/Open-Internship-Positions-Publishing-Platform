@@ -3,6 +3,7 @@ export class User {
     name: string;
     role: string;
     email: string;
+    applications:string[]=[];
 
     constructor(userId: string, name: string, role: string, email: string) {
         this.userId = userId;
@@ -10,10 +11,4 @@ export class User {
         this.role = role;
         this.email = email;
     }
-
-    getRole() {
-        return this.role;
-    }
-
-
 }

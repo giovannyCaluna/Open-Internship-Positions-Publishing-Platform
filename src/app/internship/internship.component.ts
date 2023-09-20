@@ -7,6 +7,7 @@ import { Internship } from '../models/internship.model';
 import { FirebaseServicesService } from '../firebase-services.service';
 import { ModalService } from '../modal.service';
 import { User } from '../models/user.model';
+import { Applicant } from '../models/applicant';
 
 
 @Component({
@@ -26,30 +27,37 @@ export class InternshipComponent implements OnInit {
     this.getInternships(this.user.role);
   }
 
+/**
+ * Function to get the internships. We need the role to modify the options in the component
+ * @param role 
+ */
   getInternships(role: String) {
     const starCountRef = ref(this.database, '/internships'); // Assuming '/internships' is the correct path in your database
     onValue(starCountRef, (snapshot) => {
       const internshipsData = snapshot.val();
-      console.log("data obtained in the call internship", internshipsData,role);
 
       if (internshipsData) {
         if (role == "student") {
-          this.internshipsList = Object.keys(internshipsData).map(key => {
-            const internship = internshipsData[key];
-            return new Internship(
-              key,
-              internship.title,
-              internship.description,
-              internship.offered,
-              internship.owner,
-              internship.category
+          this.internshipsList = Object.keys(internshipsData).filter(
+            (key) => this.verifyApplication(internshipsData[key].applicants, this.user.userId)
+          )
+            .map(key => {
+              console.log("pasantias q pasaron el filtro", internshipsData)
+              const internship = internshipsData[key];
+              return new Internship(
+                key,
+                internship.title,
+                internship.description,
+                internship.offered,
+                internship.owner,
+                internship.category
 
-            );
-          });
+              );
+            });
 
         } else {
-          
-          this.internshipsList = Object.keys(internshipsData).filter(key =>        internshipsData[key].owner.userId == this.user.userId
+
+          this.internshipsList = Object.keys(internshipsData).filter(key => internshipsData[key].owner.userId == this.user.userId
           ).map(key => {
             const internship = internshipsData[key];
             return new Internship(
@@ -67,32 +75,51 @@ export class InternshipComponent implements OnInit {
 
       }
     });
+  }
 
+  /**
+   * Function to validate if the user apply for the internship
+   */
 
-
+  verifyApplication(applicants: any, userId: string): boolean {
+    try {
+      var listAppl = Object.keys(applicants).filter(key => applicants[key].userId == userId);
+      console.log("Found the elemts", listAppl)
+      if (listAppl.length == 0) {return true;} else {return false;}
+    }catch (error) {
+      return true;
+    }
 
   }
+  /**
+   * Funciton to Edit an internship
+   * @param internship 
+   */
 
   edit(internship: any) {
     const dialogRef = this.modalService.openEditInternshipModal(internship);
     dialogRef.afterClosed().subscribe(result => {
       console.log("The internship opportunity was updated!", result);
     });
-
   }
-  apply(internship: any){
+
+  /**
+   * Function to appy an internship
+   * @param internship 
+   */
+  apply(internship: any) {
     const dialogRef = this.modalService.openApplyInternshipModal(internship);
     // dialogRef.afterClosed().subscribe(result => {
     //   console.log("The internship opportunity was updated!", result);
     // });
-console.log("Implemetn the apply procedure.")
+    console.log("Implemetn the apply procedure.")
   }
+
   isStudet() {
-    return this.user.getRole() == "student"? true: false;
+    return this.user.role == "student" ? true : false;
   }
   openAddInternshipModal() {
     const dialogRef = this.modalService.openAddInternshipModal();
-
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(result);
