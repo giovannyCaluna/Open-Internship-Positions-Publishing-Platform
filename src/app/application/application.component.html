@@ -6,9 +6,7 @@
 </div>
 <div class="noContent" *ngIf = "this.auxInternshipsList.length == 0">
   <h1>No internships available </h1>
-
 </div>
-
 <div *ngFor="let internship of auxInternshipsList" class="card-container">
   <mat-card class="internship-card">
     <mat-card-header>
@@ -18,12 +16,5 @@
     <mat-card-content class="internship-card-content">
       Offered: <span class="internship-card-content-text">{{ internship.offered }}</span>
     </mat-card-content>
-    <mat-card-actions>
-      <button  (click)="apply(internship)" *ngIf="isStudet()">Apply</button>
-      <button  (click)="edit(internship)" *ngIf="!isStudet()">Edit</button>
-      <button  (click)="openAplicants(internship)" *ngIf="!isStudet()">Applicants</button>
-      
-    </mat-card-actions>
   </mat-card>
-
 </div>

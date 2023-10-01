@@ -7,13 +7,14 @@ export class Internship {
   category: String;
   owner: User;
   applicants: User[]=[];
-  constructor(key: string, title: string, description: string, offered: string, owner: User, category: string) {
+  
+  constructor(key: string, title: string, description: string, offered: string, owner: User, category: string, applicants: User[]) {
     this.key = key;
     this.title = title;
     this.description = description;
     this.offered = offered;
     this.category = category;
     this.owner = owner;
-    this.applicants= [];
+    this.applicants= applicants;
   }
 }

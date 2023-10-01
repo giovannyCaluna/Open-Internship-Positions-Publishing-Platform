@@ -3,6 +3,7 @@ import { getAuth } from 'firebase/auth';
 import { FirebaseServicesService } from '../firebase-services.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { ModalService } from '../modal.service';
 
 
 @Component({
@@ -11,16 +12,27 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./option-bar.component.css']
 })
 export class OptionBarComponent {
-  constructor(private firebaseService: FirebaseServicesService, private router: Router, public auth: AuthService) { }
-
+  constructor(private firebaseService: FirebaseServicesService, private modalService: ModalService, private router: Router, public auth: AuthService) { }
   singOut() {
     var auth = getAuth(this.firebaseService.getApp());
     auth.signOut();
-    this.router.navigate(['/login']); // Replace 'destination-route' with your actual route
+    this.router.navigate(['/login']);
+    localStorage.clear();
   }
   logged() {
-    //console.log("Chaking the ngIf", this.auth.isAuthenticated());
     return this.auth.isAuthenticated();
   }
+  openAddInternshipModal() {
+    const dialogRef = this.modalService.openAddInternshipModal();
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("The internship opportunity was updated!", result);
+    });
+  }
+
+  isStudent() {
+    var user = JSON.parse(localStorage.getItem('User') || '{}');
+    return user.role == "student" ? true : false;
+  }
+
 
 }

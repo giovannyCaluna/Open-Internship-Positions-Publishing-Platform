@@ -1,0 +1,23 @@
+<mat-dialog-content>
+  <h2>Applicants</h2>
+  <h3>{{title}}</h3>
+  <p>{{ description }}</p>
+  <p>Offered: {{ offered }}</p>
+  <div *ngFor="let applicant of listApplicants" class="applicant-container">
+    <mat-card class="applicant-card">
+      <mat-card-header>
+        <mat-card-title class="applicant-card-title">Name: {{ applicant.name }}</mat-card-title>
+        <mat-card-subtitle class="applicant-card-subtitle">Email: {{ applicant.email }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="applicant-card-content">
+        Message: : <span class="applicant-card-content-text">{{ applicant.message }}</span>
+      </mat-card-content>
+      <mat-card-actions>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancelClick()">Close</button>
+
+</mat-dialog-actions>

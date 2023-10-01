@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddInternshipModalComponent } from './add-internship-modal/add-internship-modal.component';
 import { Internship } from './models/internship.model';
 import { ApplyInternshipModalComponent } from './apply-internship-modal/apply-internship-modal.component';
+import { ListApplicantsModalComponent } from './list-applicants-modal/list-applicants-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ModalService {
 
   openAddInternshipModal(): MatDialogRef<AddInternshipModalComponent> {
     return this.dialog.open(AddInternshipModalComponent, {
-      width: '400px',
+      width: '70%',
       disableClose: true,
       data:null
 
@@ -21,7 +22,7 @@ export class ModalService {
   }
   openEditInternshipModal(internship:Internship): MatDialogRef<AddInternshipModalComponent> {
     return this.dialog.open(AddInternshipModalComponent, {
-      width: '400px',
+      width: '70%',
       disableClose: true,
       data:internship
       
@@ -29,7 +30,16 @@ export class ModalService {
   }
   openApplyInternshipModal(internship:Internship): MatDialogRef<ApplyInternshipModalComponent> {
     return this.dialog.open(ApplyInternshipModalComponent, {
-      width: '800px',
+      width: '70%',
+      disableClose: true,
+      data:internship
+      
+    });
+  }
+
+  openListApplications(internship:Internship): MatDialogRef<ListApplicantsModalComponent> {
+    return this.dialog.open(ListApplicantsModalComponent, {
+      width: '70%',
       disableClose: true,
       data:internship
       

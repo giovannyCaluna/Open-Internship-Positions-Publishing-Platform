@@ -1,0 +1,40 @@
+.applicant-container {
+    display: flex;
+    justify-content: center; /* Center align the cards horizontally */
+    align-items: center; /* Center align the cards vertically */
+    width: 100%;
+    padding: 16px; /* Add padding to the container if needed */
+    box-sizing: border-box; /* Include padding and border in the width */
+  }
+.applicant-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+    width: 70%;
+     /* Media query for screens with a minimum width */
+     @media screen and (max-width: 768px) {
+      width: 90%; /* Change width to 90% for screens with a minimum width of 768px */
+    }
+  }
+  .applicant-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .applicant-card-content {
+    padding: 16px;
+  }
+  .applicant-card-title {
+    font-size: x-large;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .applicant-card-subtitle {
+    font-size: large;
+    color: #555;
+  }
+  .applicant-card-content-text {
+    font-size: large;
+    color: #333;
+  }

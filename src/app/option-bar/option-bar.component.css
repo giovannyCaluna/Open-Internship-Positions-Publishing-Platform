@@ -1,30 +1,46 @@
-/* navbar.component.css */
-
 /* Style the navigation bar */
 .navbar {
-    background-color: #333; /* Set the background color */
-    padding: 10px; /* Add some padding for spacing */
-  }
-  
-  /* Style the navigation links */
-  .navbar ul {
-    list-style: none; /* Remove list bullets */
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar li {
-    display: inline; /* Display list items horizontally */
-    margin-right: 20px; /* Add spacing between items */
-  }
-  
-  .navbar a {
-    text-decoration: none; /* Remove underline from links */
-    color: #fff; /* Set link text color */
-    font-weight: bold; /* Make the text bold */
-  }
-  
-  .navbar a:hover {
-    color: #ff6600; /* Change link color on hover */
-  }
-  
+  background-color: #007BFF; /* Change to your desired background color */
+  padding: 10px;
+}
+/* Style the list items */
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-end; /* Align items to the right */
+}
+.navbar li {
+  margin-right: 20px; /* Adjust the spacing between items */
+}
+/* Style the anchor links */
+.navbar a {
+  text-decoration: none;
+  color: white; /* Text color for links */
+  font-weight: bold; /* Add emphasis to text */
+  font-size: larger;
+  transition: color 0.3s; /* Smooth color transition on hover */
+}
+.navbar-header{
+  font-size: xx-large;
+  font-weight: bold;
+  color: white;
+}
+.navbar a:hover {
+  color: #FFA500; /* Change link color on hover */
+}
+/* Style the sign-out button */
+.mat-dialog-actions button {
+  background-color: #FF4500; /* Button background color */
+  color: white; /* Button text color */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s; /* Smooth background color transition on hover */
+}
+.mat-dialog-actions button:hover {
+  background-color: #FF6347; /* Change button background color on hover */
+}

@@ -1,0 +1,100 @@
+.custom-dialog-content {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 70%;
+
+  /* Media query for screens with a minimum width */
+  @media screen and (max-width: 768px) {
+    width: 90%;
+    /* Change width to 90% for screens with a minimum width of 768px */
+
+  }
+}
+
+.dialog-title {
+  font-size: 24px;
+  /* Font size for the dialog title */
+
+  margin-bottom: 20px;
+  /* Spacing below the title */
+}
+
+.dialog-form {
+  display: block;
+  flex-direction: row;
+}
+
+.custom-form-field {
+  margin-bottom: 20px;
+  /* Spacing between form fields */
+}
+
+label {
+  font-weight: bold;
+  /* Make labels bold */
+}
+
+.custom-input,
+.custom-textarea {
+  border: 1px solid #ccc;
+  /* Add a border */
+  border-radius: 4px;
+  /* Rounded corners */
+  padding: 10px;
+  /* Add some padding */
+  font-size: 16px;
+  /* Set font size */
+  width: 100%;
+
+  /* Make input and textarea full width */
+  /* Media query for screens with a minimum width */
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+    /* Change width to 90% for screens with a minimum width of 768px */
+
+  }
+
+}
+
+.custom-input:focus,
+.custom-textarea:focus {
+  border-color: #007BFF;
+  /* Highlight border on focus */
+}
+
+.custom-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  /* Align buttons to the right */
+  margin-top: 20px;
+  /* Spacing above buttons */
+}
+
+.custom-button {
+  background-color: #007BFF;
+  /* Button background color */
+  color: #fff;
+  /* Text color */
+  border: none;
+  border-radius: 4px;
+  /* Rounded corners */
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  /* Button font size */
+  margin-left: 10px;
+  /* Spacing between buttons */
+}
+
+.custom-button:hover {
+  background-color: #0056b3;
+  /* Button background color on hover */
+}
+
+textarea {
+  min-height: 100px;
+  /* Adjust this value as needed */
+  resize: none;
+  /* Prevent manual resizing by the user */
+}

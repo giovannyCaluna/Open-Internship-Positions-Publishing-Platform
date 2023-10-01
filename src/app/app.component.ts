@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalService } from './modal.service';
 import { AuthService } from './auth.service';
-
-
 
 @Component({
   selector: 'app-root',
@@ -10,25 +7,18 @@ import { AuthService } from './auth.service';
   styleUrls: ['./app.component.css']
 })
 
-
 export class AppComponent implements OnInit {
-  constructor(private modalService: ModalService, private auth: AuthService) { }
+  constructor(private auth: AuthService) { }
   showInternship: boolean = false;
   ngOnInit(): void {
-
 
     if (this.auth.isAuthenticated()) {
       this.showInternship = true;
     }
   }
 
-
-
-
   title = 'internship-project';
   logged() {
-    //console.log("Chaking the ngIf", this.auth.isAuthenticated());
-
     return this.auth.isAuthenticated();
   }
 }

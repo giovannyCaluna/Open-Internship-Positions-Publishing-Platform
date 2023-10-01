@@ -7,9 +7,7 @@ import { FirebaseServicesService } from './firebase-services.service';
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(private firebaseService: FirebaseServicesService) { }
-
   public isAuthenticatedVar = false;
   isAuthenticated() {
     var auth = getAuth(this.firebaseService.getApp());

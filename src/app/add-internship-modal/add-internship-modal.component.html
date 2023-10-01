@@ -1,19 +1,22 @@
-<mat-dialog-content>
-    <h2>Add New Internship</h2>
-    <form>
-      <mat-form-field>
-        <input matInput placeholder="Title" [(ngModel)]="title" name="title">
-      </mat-form-field>
-      <mat-form-field>
-        <textarea matInput placeholder="Description" [(ngModel)]="description" name="description">
-        </textarea>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Offered" [(ngModel)]="offered" name="offered">
-      </mat-form-field>
-    </form>
-  </mat-dialog-content>
-  <mat-dialog-actions>
-    <button mat-button (click)="onCancelClick()">Cancel</button>
-    <button mat-button (click)="saveInternship()">Save</button>
-  </mat-dialog-actions>
+<div class="custom-dialog-content">
+  <h2 class="dialog-title">Add New Internship</h2>
+  <form class="dialog-form">
+    <div class="custom-form-field">
+      <label for="title">Title</label>
+      <input type="text" id="title" placeholder="Title" [(ngModel)]="title" name="title" class="custom-input">
+    </div>
+    <div class="custom-form-field">
+      <label for="description">Description</label>
+      <textarea id="description" placeholder="Description" [(ngModel)]="description" name="description"
+        class="custom-textarea" (input)="adjustTextareaSize($event)"></textarea>
+    </div>
+    <div class="custom-form-field">
+      <label for="offered">Offered</label>
+      <input type="text" id="offered" placeholder="Offered" [(ngModel)]="offered" name="offered" class="custom-input">
+    </div>
+  </form>
+  <div class="custom-dialog-actions">
+    <button class="custom-button" (click)="onCancelClick()">Cancel</button>
+    <button class="custom-button" (click)="saveInternship()">Save</button>
+  </div>
+</div>

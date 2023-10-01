@@ -8,5 +8,5 @@ export class Applicant {
         this.name = name;
         this.email = email;
         this.message=message;
-    }
+    };
 }

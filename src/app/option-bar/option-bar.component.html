@@ -1,11 +1,13 @@
 <nav class="navbar">
-    <ul>
-      <li *ngIf = "!this.logged()"><a routerLink="/">Login</a></li>
-      <li *ngIf = "!this.logged()"><a routerLink="/registration">Registration</a></li>
-      <li *ngIf = "this.logged()"><a routerLink="/internships">Internship</a></li>
-       <mat-dialog-actions>
-            <button mat-button *ngIf = "this.logged()"  (click)="this.singOut()"> Sing Out</button>
-          </mat-dialog-actions> 
-    </ul>
-
-  </nav>
+  <div class="navbar-header">
+    <a class="navbar-brand" routerLink="/">OIPPP</a>
+  </div>
+  <ul>
+    <li *ngIf="!this.logged()"><a routerLink="/login">Login</a></li>
+    <li *ngIf="!this.logged()"><a routerLink="/registration">Registration</a></li>
+    <li *ngIf="this.logged() && !this.isStudent()"><a (click)="this.openAddInternshipModal()">Add Internship</a></li>
+    <li *ngIf="this.logged() && this.isStudent()"><a routerLink="/applications">Applications</a></li>
+    <li *ngIf="this.logged() && this.isStudent()"><a routerLink="/applyInternships">internships</a></li>
+    <li *ngIf="this.logged()"><a (click)="this.singOut()">Sing Out</a></li>
+  </ul>
+</nav>
