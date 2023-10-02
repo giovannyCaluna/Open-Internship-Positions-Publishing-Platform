@@ -21,12 +21,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { ApplicationComponent } from './application/application.component';
 import { ListApplicantsModalComponent } from './list-applicants-modal/list-applicants-modal.component';
+import { RedirectComponent } from './redirect/redirect.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     InternshipComponent,
-    LoginComponent, RegistrationComponent, AddInternshipModalComponent, OptionBarComponent, ApplyInternshipModalComponent, ApplicationComponent, ListApplicantsModalComponent
+    LoginComponent, RegistrationComponent, AddInternshipModalComponent, OptionBarComponent, ApplyInternshipModalComponent, ApplicationComponent, ListApplicantsModalComponent, RedirectComponent
   ],
   imports: [
     BrowserModule, FormsModule, MatButtonModule, AppRoutingModule, RouterModule,
@@ -34,7 +37,8 @@ import { ListApplicantsModalComponent } from './list-applicants-modal/list-appli
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatProgressSpinnerModule
   ],
   providers: [FirebaseServicesService
 

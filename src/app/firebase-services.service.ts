@@ -28,6 +28,7 @@ export class FirebaseServicesService {
     try {
       console.log('User signed in successfully');
       await signInWithEmailAndPassword(this.auth, email, password).then(result => {
+        console.log("result", result);
         this.user.userId = result.user.uid;
         localStorage.setItem('useruid', result.user.uid);
       }
@@ -39,28 +40,38 @@ export class FirebaseServicesService {
   }
 
   async getUser() {
-    console.log("getUSer", this.user.userId);
-    console.log("getUSer auth", this.auth);
-    if (this.user.userId == "") {
-      this.user.userId = localStorage.getItem('useruid') || '';
-    }
-    return new Promise<User>((resolve) => {
-      var database = getDatabase(this.getApp());
-      const starCountRef = ref(database, 'users/' + this.user.userId);
-      onValue(starCountRef, (snapshot) => {
-        const userData = snapshot.val();
-        console.log("getUSer", userData.role);
-        const user2 = new User(
-          this.user.userId,
-          userData.name,
-          userData.role,
-          userData.email
-        );
-        resolve(user2); // Resolve the promise with the user2 object when data is available
-      });
+if(localStorage.getItem('useruid')!=null){
+  this.user.userId = localStorage.getItem('useruid')||"";
+}
 
-    });
-  }
+
+      return new Promise<User>((resolve) => {
+        var database = getDatabase(this.getApp());
+        const starCountRef = ref(database, 'users/' + this.user.userId);
+        onValue(starCountRef, (snapshot) => {
+          const userData = snapshot.val();
+          if (userData == null) {
+            resolve(new User("","","",""));
+          }else{
+            
+
+          const user2 = new User(
+            this.user.userId,
+            userData.name,
+            userData.role,
+            userData.email
+          );
+          resolve(user2); // Resolve the promise with the user2 object when data is available
+        };
+  
+      });
+    }
+  
+
+      );
+    }   
+
+
   getFinalUser() {
     return this.user;
   }

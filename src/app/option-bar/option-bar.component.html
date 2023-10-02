@@ -3,8 +3,6 @@
     <a class="navbar-brand" routerLink="/">OIPPP</a>
   </div>
   <ul>
-    <li *ngIf="!this.logged()"><a routerLink="/login">Login</a></li>
-    <li *ngIf="!this.logged()"><a routerLink="/registration">Registration</a></li>
     <li *ngIf="this.logged() && !this.isStudent()"><a (click)="this.openAddInternshipModal()">Add Internship</a></li>
     <li *ngIf="this.logged() && this.isStudent()"><a routerLink="/applications">Applications</a></li>
     <li *ngIf="this.logged() && this.isStudent()"><a routerLink="/applyInternships">internships</a></li>

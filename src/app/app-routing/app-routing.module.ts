@@ -5,6 +5,7 @@ import { InternshipComponent } from '../internship/internship.component';
 import { RegistrationComponent } from '../registration/registration.component';
 import { AuthGuard } from '../auth.guard';
 import { ApplicationComponent } from '../application/application.component';
+import { RedirectComponent } from '../redirect/redirect.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'postInternships', component: InternshipComponent},
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'applications', component: ApplicationComponent } 
+  { path: 'applications', component: ApplicationComponent }, 
+  { path: 'redirect', component: RedirectComponent } 
 ];
 console.log([AuthGuard]);
 

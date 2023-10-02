@@ -1,5 +1,10 @@
+import { Router } from '@angular/router';
 import { EmailAuthProvider } from 'firebase/auth';
 import { GoogleAuthProvider } from "firebase/auth";
+import { User } from 'src/app/models/user.model';
+import { getDatabase, ref, set } from 'firebase/database';
+import { FirebaseServicesService } from 'src/app/firebase-services.service';
+
 
 
 export const environment = {
@@ -16,18 +21,30 @@ export const environment = {
 };
 
 export const uiConfig = {
-    callbacks: {
-        signInSuccessWithAuthResult: function (authResult: any, redirectUrl: any) {
-            // User successfully signed in.
-            // Return type determines whether we continue the redirect automatically
-            // or whether we leave that to developer to handle.
 
-            return true;
+
+    callbacks: {
+
+        signInSuccessWithAuthResult: function (authResult: any, redirectUrl: any) {
+            console.log("authResult", authResult);
+            console.log("redirectUrl", redirectUrl);
+            if ((authResult.user.uid != null)) {
+                localStorage.setItem('useruid', authResult.user.uid);
+                localStorage.setItem('User',  JSON.stringify(new User(authResult.user.uid,authResult.user.displayName,"",authResult.user.email)));
+               window.location.href = 'redirect';
+
+            }
+            return false;
+
+
+
+
+
         }
     },
     // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
-    signInSuccessUrl: '/applyInternships',
+    queryParameterForSignInSuccessUrl: '/applyInternships',
     signInOptions: [
         EmailAuthProvider.PROVIDER_ID,
         GoogleAuthProvider.PROVIDER_ID,
@@ -38,7 +55,6 @@ export const uiConfig = {
     // Privacy policy url.
     privacyPolicyUrl: '<your-privacy-policy-url>'
 };
-
 
 
 

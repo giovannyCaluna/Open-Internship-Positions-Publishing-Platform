@@ -56,5 +56,26 @@ button[type="submit"] {
   margin-bottom: 10px;
 }
 
+h2{
+  text-align: center;
+}
+.noContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  align-self: start;
+  margin:90px 10px 50px 10px;
+  max-width: 100%;
+}
 
+.loading-container {
+  width: 100px;
+  height: 100px;
+  background-color: #3498db;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 24px;
+}
 

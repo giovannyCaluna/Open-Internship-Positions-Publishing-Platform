@@ -1,13 +1,15 @@
-<div class="registration-form">
-  <h2>Registration</h2>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+<div class="registration-form" *ngIf="!this.isRegister">
+  <h2  >Please, add your role and interested topics</h2>
   <form (ngSubmit)="register()">
     <div class="form-group">
       <label for="name">Name</label>
-      <input type="text" id="name" [(ngModel)]="name" name="name" required>
+      <input type="text" id="name" [(ngModel)]="name" name="name" required [disabled]="this.disabled">
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" id="email" [(ngModel)]="email" name="email" required>
+      <input type="email" id="email" [(ngModel)]="email" name="email" required [disabled]="this.disabled">
     </div>
     <div class="form-group">
       <label for="role">Role</label>
@@ -16,10 +18,29 @@
         <option value="institution_representative">Institution Representative</option>
       </select>
     </div>
-    <div class="form-group">
+    <form (submit)="addItem()">
+      <div class="form-group">
+        <label for="interests">Interests</label>
+        <input type="text" [(ngModel)]="textInput" (keydown.enter)="onEnterPressed()" name="interests"
+          placeholder="Type your text and press Enter">
+      </div>
+    </form>
+    <ul>
+      <li *ngFor="let item of items">{{ item }}
+        <i class="fas fa-times remove-icon" (click)="removeItem(item)"></i>
+
+      </li>
+    </ul>
+    <div class="form-group" *ngIf = "!this.disabled">
       <label for="password">Password</label>
       <input type="password" id="password" [(ngModel)]="password" name="password" required>
     </div>
     <button type="submit">Register</button>
   </form>
+</div>
+
+<div  class="noContent" *ngIf="this.isRegister"> 
+  <h1>Please Log in   ... </h1>
+  <mat-spinner></mat-spinner>
+
 </div>

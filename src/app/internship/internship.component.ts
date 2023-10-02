@@ -6,6 +6,7 @@ import { Internship } from '../models/internship.model';
 import { FirebaseServicesService } from '../firebase-services.service';
 import { ModalService } from '../modal.service';
 import { User } from '../models/user.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,15 +21,18 @@ export class InternshipComponent implements OnInit {
   user = new User("", "", "", "");
   internshipsList: Internship[] = [];
   auxInternshipsList: Internship[] = [];
-  constructor(private firebaseService: FirebaseServicesService, private modalService: ModalService) { }
+  constructor(private firebaseService: FirebaseServicesService, private modalService: ModalService,  private router: Router) { }
   database = getDatabase(this.firebaseService.getApp());
 
   async ngOnInit() {
     await this.firebaseService.getUser().then((result) => {
-      console.log("NgOnInit", result);
       this.user = new User(result.userId, result.name, result.role, result.email)
       localStorage.setItem('User', JSON.stringify(this.user));
+     //this.router.navigate(['/registration']);
+
+      
     });
+
     this.getInternships(this.user.role);
   }
 
