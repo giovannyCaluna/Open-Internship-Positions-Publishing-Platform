@@ -6,6 +6,7 @@ import { RegistrationComponent } from '../registration/registration.component';
 import { AuthGuard } from '../auth.guard';
 import { ApplicationComponent } from '../application/application.component';
 import { RedirectComponent } from '../redirect/redirect.component';
+import { ChatComponent } from '../chat/chat.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'applications', component: ApplicationComponent }, 
-  { path: 'redirect', component: RedirectComponent } 
+  { path: 'redirect', component: RedirectComponent } ,
+  { path: 'chat', component: ChatComponent } 
 ];
 console.log([AuthGuard]);
 

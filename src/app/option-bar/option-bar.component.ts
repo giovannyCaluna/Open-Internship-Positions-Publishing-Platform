@@ -34,5 +34,9 @@ export class OptionBarComponent {
     return user.role == "student" ? true : false;
   }
 
+  retrieveMessages() {
+    // this.firebaseService.retrieveMessages();
+  } 
+
 
 }

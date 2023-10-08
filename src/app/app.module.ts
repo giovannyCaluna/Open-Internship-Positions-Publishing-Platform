@@ -23,13 +23,16 @@ import { ApplicationComponent } from './application/application.component';
 import { ListApplicantsModalComponent } from './list-applicants-modal/list-applicants-modal.component';
 import { RedirectComponent } from './redirect/redirect.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
+import { ChatComponent } from './chat/chat.component';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     InternshipComponent,
-    LoginComponent, RegistrationComponent, AddInternshipModalComponent, OptionBarComponent, ApplyInternshipModalComponent, ApplicationComponent, ListApplicantsModalComponent, RedirectComponent
+    LoginComponent, RegistrationComponent, AddInternshipModalComponent, OptionBarComponent, ApplyInternshipModalComponent, ApplicationComponent, ListApplicantsModalComponent, RedirectComponent, ChatComponent
   ],
   imports: [
     BrowserModule, FormsModule, MatButtonModule, AppRoutingModule, RouterModule,
@@ -38,8 +41,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatSelectModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatProgressSpinnerModule
-  ],
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatListModule
+    ],
   providers: [FirebaseServicesService
 
   ],

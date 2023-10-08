@@ -55,12 +55,8 @@ if(localStorage.getItem('useruid')!=null){
           }else{
             
 
-          const user2 = new User(
-            this.user.userId,
-            userData.name,
-            userData.role,
-            userData.email
-          );
+          var user2 = userData
+          user2.userId = this.user.userId;
           resolve(user2); // Resolve the promise with the user2 object when data is available
         };
   

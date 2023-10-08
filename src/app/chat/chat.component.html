@@ -1,0 +1,22 @@
+<div class="chat-list">
+  <h2>Chats</h2>
+  <ul>
+    <li *ngFor="let chat of chats" (click)="selectChat(chat)">
+      {{ chat.name }}
+    </li>
+  </ul>
+</div>
+
+<div class="chat-view">
+  <h2 *ngIf="selectedChat">{{ selectedChat.name }}</h2>
+  <ul *ngIf="selectedChat">
+    <li *ngFor="let message of selectedChat.messages">
+      {{ message.sender }}: {{ message.content }}
+    </li>
+  </ul>
+
+  <form *ngIf="selectedChat">
+    <input type="text" [(ngModel)]="replyMessage" name="replyMessage">
+    <button type="submit" (click)="sendMessage()">Send</button>
+  </form>
+</div>

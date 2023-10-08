@@ -26,12 +26,13 @@ export class InternshipComponent implements OnInit {
 
   async ngOnInit() {
     await this.firebaseService.getUser().then((result) => {
-      this.user = new User(result.userId, result.name, result.role, result.email)
+      this.user = result;
       localStorage.setItem('User', JSON.stringify(this.user));
      //this.router.navigate(['/registration']);
 
       
     });
+    console.log("user", this.user);
 
     this.getInternships(this.user.role);
   }

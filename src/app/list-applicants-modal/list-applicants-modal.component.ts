@@ -4,6 +4,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { User } from '../models/user.model';
 import { getDatabase, push, ref } from 'firebase/database';
 import { Applicant } from '../models/applicant';
+import { Chat } from '../models/chat';
+import { Message } from '../models/message';
 
 @Component({
   selector: 'app-list-applicants-modal',
@@ -13,13 +15,18 @@ import { Applicant } from '../models/applicant';
 export class ListApplicantsModalComponent {
   constructor(private firebaseService: FirebaseServicesService, private dialogRef: MatDialogRef<any>) { }
   user = new User("", "", "", "");
-  owner: User = new User('', '', '', '');
   database = getDatabase(this.firebaseService.getApp());
-  message: string = '';
+  description: string = '';
+  title: string = '';
+  offered: string = '';
+  key: string = '';
+  applicants: [] = [];
+  listApplicants: Applicant[] = [];
+  sendmessage: Boolean = false;
+  messageFromtheCompany: string = "";
+
   async ngOnInit() {
-    await this.firebaseService.getUser().then((result) => {
-      this.user = new User(result.userId, result.name, result.role, result.email)
-    });
+    await this.firebaseService.getUser().then((result) => { this.user = result; });
     if (this.dialogRef._containerInstance._config.data != null) {
       this.description = this.dialogRef._containerInstance._config.data.description;
       this.title = this.dialogRef._containerInstance._config.data.title;
@@ -28,50 +35,42 @@ export class ListApplicantsModalComponent {
       this.applicants = this.dialogRef._containerInstance._config.data.applicants;
 
     }
-    console.log("dataos usuario to save internship", this.applicants);
     this.listApplicants = Object.keys(this.applicants).map((key: any) => {
       const auxUser: Applicant = this.applicants[key];
       return new Applicant(auxUser.userId, auxUser.name, auxUser.email, auxUser.message);
-
     });
   }
 
-
-
-
-
-
-
-
-  async applyInternship() {
-    if (this.dialogRef._containerInstance._config.data != null) {
-      var newApplicant = new Applicant(this.user.userId, this.user.name, this.user.email, this.message);
-      const starCountRef = ref(this.database, '/internships/' + this.key + '/applicants');
-      console.log(push(starCountRef, newApplicant), newApplicant);
-    }
-    //  } else {
-
-    //    var newInternship = new Internship('', this.title, this.description, this.offered, this.user, this.category);
-    //    console.log("saving new register", newInternship);
-    //    const starCountRef = ref(this.database, '/internships/'); // Assuming '/internships' is the correct path in your database
-    //    console.log(push(starCountRef, newInternship));
-    //  }
-
-    this.dialogRef.close();
-  }
-
-  description: string = '';
-  title: string = '';
-  offered: string = '';
-  key: string = '';
-  category: string = '';
-  applicants: [] = [];
-  listApplicants: Applicant[] = [];
-  onSaveClick() {
-
-  }
   onCancelClick() {
     this.dialogRef.close();
-
   }
+
+
+  showMessageInput() {
+    this.sendmessage = true;
+  }
+
+   sendMessage(applicant: Applicant) {
+    var messageFromCompany: Message[] = [];
+    messageFromCompany.push(new Message(this.user.name, applicant.name, this.messageFromtheCompany));
+    
+    var chatCompany: Chat = new Chat(applicant.name, [this.user.userId, applicant.userId], messageFromCompany);
+    var chatApplicant: Chat = new Chat(this.user.name, [this.user.userId, applicant.userId], messageFromCompany);
+
+    const starCountRefCompany = ref(this.database, '/users/' + this.user.userId + '/chats');
+    const starCountRefApplicant = ref(this.database, '/users/' + applicant.userId + '/chats');
+
+    try {
+      push(starCountRefCompany, chatCompany);
+      push(starCountRefApplicant, chatApplicant);
+      this.dialogRef.close();
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+  cancelContact() {
+    this.sendmessage = false;
+    this.messageFromtheCompany = "";
+  }
+
 }

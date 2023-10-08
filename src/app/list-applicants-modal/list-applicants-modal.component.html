@@ -12,12 +12,20 @@
       <mat-card-content class="applicant-card-content">
         Message: : <span class="applicant-card-content-text">{{ applicant.message }}</span>
       </mat-card-content>
-      <mat-card-actions>
+      <form *ngIf="this.sendmessage">
+        <mat-form-field class="wide-input">
+          <input matInput placeholder="Write a message for the applicant" [(ngModel)]="messageFromtheCompany"
+            name="messageFromtheCompany">
+        </mat-form-field>
+        <button mat-button (click)="sendMessage(applicant)">Send</button>
+        <button mat-button (click)="cancelContact()">Cancel</button>
+      </form>
+      <mat-card-actions *ngIf="!this.sendmessage">
+        <button mat-button (click)="showMessageInput()">Contact</button>
       </mat-card-actions>
     </mat-card>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onCancelClick()">Close</button>
-
 </mat-dialog-actions>
