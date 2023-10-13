@@ -12,13 +12,13 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   // { path: 'applyInternships', component: InternshipComponent, canActivate: [AuthGuard] },
   // { path: 'postInternships', component: InternshipComponent, canActivate: [AuthGuard] },
-  { path: 'applyInternships', component: InternshipComponent },
-  { path: 'postInternships', component: InternshipComponent},
+  { path: 'applyInternships', component: InternshipComponent, canActivate: [AuthGuard]  },
+  { path: 'postInternships', component: InternshipComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'applications', component: ApplicationComponent }, 
+  { path: 'applications', component: ApplicationComponent, canActivate: [AuthGuard]  }, 
   { path: 'redirect', component: RedirectComponent } ,
-  { path: 'chat', component: ChatComponent } 
+  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard]  } 
 ];
 console.log([AuthGuard]);
 

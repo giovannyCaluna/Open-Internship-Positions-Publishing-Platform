@@ -17,6 +17,7 @@ export class ChatComponent implements OnInit {
   chats: Chat[] = [];
   user = new User("", "", "", "");
   chatsReceiver: Chat[] = [];
+  inputReply:Boolean = false;
 
   database = getDatabase(this.firebaseService.getApp());
   constructor(private firebaseService: FirebaseServicesService) { }
@@ -39,6 +40,7 @@ export class ChatComponent implements OnInit {
   }
 
   selectChat(chat: Chat) {
+    this.inputReply = true;
     this.selectedChat = chat;
     const starCountRef = ref(this.database, '/users/' + this.user.userId + '/chats/' + chat.id + '/messages/');
     onValue(starCountRef, (snapshot) => { this.selectedChat.messages = snapshot.val(); });
@@ -58,6 +60,8 @@ export class ChatComponent implements OnInit {
         update(starCountRef, this.selectedChat);
       }
     });
+    this.replyMessage = '';
+
   }
 
   getChatsFromReceiverUser(idUser: string, message: Message) {

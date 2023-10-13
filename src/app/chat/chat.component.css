@@ -1,22 +1,64 @@
+/* Adjust the chat container size and position */
 .chat-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-  }
+  width: 80%; /* Set your desired width */
+  height: 700px; /* Set your desired height */
+  max-height: 700px; /* Set your desired height */
+  margin: 20px auto;
+  display: flex;
+  border: 1px solid #ccc;
+  color: white;
+}
+
+/* Style for the chat list on the left */
+.title{
+  text-align: center;
+}
+.chat-list {
+  width: 30%; /* Adjust as needed */
+  background-color: #007BFF;
+  padding: 5px;
+  border-right: 1px solid #ccc;
+  color: white;
+
+}
+
+/* Style for the chat view on the right */
+.chat-view {
+  width: 70%; /* Adjust as needed */
+  padding: 10px;
+  overflow-y: auto;
+  color: white;
+}
+
+/* Style for incoming messages (left) */
+.incoming-message {
+  background-color: #e1f5fe; /* Change the color as desired */
+  margin-right: 10px; /* Add space between message and avatar */
+}
+
+/* Style for outgoing messages (right) */
+.outgoing-message {
+  background-color: white; /* Change the color as desired */
+  margin-left: 10px; /* Add space between message and avatar */
+}
+
+/* Style for the sender's name */
+.chat-sender {
+  font-weight: bold;
+}
+
+/* Style for the message content */
+.chat-content {
+  margin-top: 5px;
+}
+
+/* Style for the input form */
+.input-Chat form {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.foot{
+  text-align: center;
   
-  .message-list {
-    flex: 1;
-    max-width: 30%;
-    overflow-y: auto;
-  }
-  
-  .chat-details {
-    flex: 1;
-    padding-left: 20px;
-  }
-  
-  .no-message-selected {
-    text-align: center;
-    margin-top: 50px;
-  }
-  
+}

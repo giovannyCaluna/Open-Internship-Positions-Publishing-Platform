@@ -1,22 +1,37 @@
-<div class="chat-list">
-  <h2>Chats</h2>
-  <ul>
-    <li *ngFor="let chat of chats" (click)="selectChat(chat)">
-      {{ chat.name }}
-    </li>
-  </ul>
+<h1 class="title">Messages</h1>
+
+<div class="chat-container mat-elevation-z2">
+  <div class="chat-list">
+    <h2>Chats</h2>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let chat of chats" (click)="selectChat(chat)">
+        <mat-icon matListAvatar>account_circle</mat-icon>
+        <h4 matLine>{{ chat.name }}</h4>
+      </mat-list-item>
+    </mat-nav-list>
+  </div>
+  <div class="chat-view">
+    <h2 *ngIf="selectedChat">{{ selectedChat.name }}</h2>
+    <mat-list>
+      <ng-container *ngFor="let message of selectedChat.messages">
+        <mat-list-item [ngClass]="{'outgoing-message': message.sender !== 'You', 'incoming-message': message.sender === 'You'}">
+          <!-- <img matListAvatar src="https://example.com/avatar.png" alt="User Avatar"> -->
+          <div matLine class="chat-sender">{{ message.sender }}</div>
+          <div matLine class="chat-content">{{ message.content }}</div>
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+    <div class="input-Chat">
+      <form *ngIf="inputReply" (ngSubmit)="sendMessage()">
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="replyMessage" name="replyMessage" placeholder="Type a message...">
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Send</button>
+      </form>
+    </div>
+  </div>
 </div>
 
-<div class="chat-view">
-  <h2 *ngIf="selectedChat">{{ selectedChat.name }}</h2>
-  <ul *ngIf="selectedChat">
-    <li *ngFor="let message of selectedChat.messages">
-      {{ message.sender }}: {{ message.content }}
-    </li>
-  </ul>
-
-  <form *ngIf="selectedChat">
-    <input type="text" [(ngModel)]="replyMessage" name="replyMessage">
-    <button type="submit" (click)="sendMessage()">Send</button>
-  </form>
-</div>
+<footer class="foot">
+  <p>Copyright &copy; 2023 OIPPP </p>
+</footer>

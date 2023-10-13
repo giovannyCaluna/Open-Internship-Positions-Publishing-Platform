@@ -1,17 +1,36 @@
 <nav class="navbar">
   <div class="navbar-header">
-    <a class="navbar-brand" routerLink="/">OIPPP</a>
+    <a class="navbar-brand" >OIPPP</a>
   </div>
   <ul>
-    <li *ngIf="this.logged() && !this.isStudent()"><a (click)="this.openAddInternshipModal()">Add Internship</a></li>
-    <li *ngIf="this.logged()">
-
-      <a routerLink="/chat"> <mat-icon aria-hidden="false" aria-label="Example home icon"
-          fontIcon="message"></mat-icon></a>
+    <li *ngIf="this.logged() && !this.isStudent()">
+      <a (click)="this.openAddInternshipModal()">
+        <mat-icon aria-hidden="false" fontIcon="add" title="chtss"> </mat-icon>
+        Add Internship
+        </a>
     </li>
-
-    <li *ngIf="this.logged() && this.isStudent()"><a routerLink="/applications">Applications</a></li>
-    <li *ngIf="this.logged() && this.isStudent()"><a routerLink="/applyInternships">internships</a></li>
-    <li *ngIf="this.logged()"><a (click)="this.singOut()">Sing Out</a></li>
+    <li *ngIf="this.logged()">
+      <a routerLink="/chat">
+        <mat-icon aria-hidden="false" fontIcon="message" title="Messages"> </mat-icon>
+        Messages
+      </a>
+    </li>
+    <li *ngIf="this.logged() && this.isStudent()">
+      <a routerLink="/applications">
+        <mat-icon aria-hidden="false" fontIcon="track_changes" title="Applications"> </mat-icon>
+        Applications
+      </a>
+    </li>
+    <li *ngIf="this.logged()">
+      <a routerLink="/applyInternships">
+        <mat-icon aria-hidden="false" fontIcon="list" title="Available Internships"> </mat-icon>
+        Internships
+      </a>
+    </li>
+    <li *ngIf="this.logged()">
+      <a (click)="this.singOut()">
+        <mat-icon aria-hidden="false" fontIcon="exit_to_app" title="Exit"> </mat-icon>
+        Sing Out</a>
+      </li>
   </ul>
 </nav>

@@ -13,6 +13,8 @@
 }
 .navbar li {
   margin-right: 20px; /* Adjust the spacing between items */
+  display: flex; 
+  align-items: center;
 }
 /* Style the anchor links */
 .navbar a {
@@ -21,6 +23,7 @@
   font-weight: bold; /* Add emphasis to text */
   font-size: larger;
   transition: color 0.3s; /* Smooth color transition on hover */
+  margin-left: 5px;
 }
 .navbar-header{
   font-size: xx-large;
